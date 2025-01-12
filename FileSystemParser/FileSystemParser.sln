@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemParser.Console", "FileSystemParser.Console\FileSystemParser.Console.csproj", "{8828F3DF-2568-4790-855E-858D6DBEE2EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8828F3DF-2568-4790-855E-858D6DBEE2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8828F3DF-2568-4790-855E-858D6DBEE2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8828F3DF-2568-4790-855E-858D6DBEE2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8828F3DF-2568-4790-855E-858D6DBEE2EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

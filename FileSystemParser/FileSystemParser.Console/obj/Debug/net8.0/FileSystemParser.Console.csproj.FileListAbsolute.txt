@@ -1,0 +1,14 @@
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\bin\Debug\net8.0\FileSystemParser.Console.exe
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\bin\Debug\net8.0\FileSystemParser.Console.deps.json
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\bin\Debug\net8.0\FileSystemParser.Console.runtimeconfig.json
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\bin\Debug\net8.0\FileSystemParser.Console.dll
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\bin\Debug\net8.0\FileSystemParser.Console.pdb
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.AssemblyInfoInputs.cache
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.AssemblyInfo.cs
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.csproj.CoreCompileInputs.cache
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.dll
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\refint\FileSystemParser.Console.dll
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.pdb
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.genruntimeconfig.cache
+C:\Users\Andrija\Temp\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\ref\FileSystemParser.Console.dll

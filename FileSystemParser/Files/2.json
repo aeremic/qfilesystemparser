@@ -1,0 +1,7 @@
+{
+  "components": [
+    { "names": "2First", "status": 1 },
+    { "names": "2Second", "status": 2 },
+    { "names": "2Third", "status": 3 }
+  ]
+}
