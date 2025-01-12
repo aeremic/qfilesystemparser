@@ -1,0 +1,5 @@
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net7.0-windows8.0\FileSystemParser.WPF.csproj.AssemblyReference.cache
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net7.0-windows8.0\MainWindow.g.cs
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net7.0-windows8.0\App.g.cs
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net7.0-windows8.0\FileSystemParser.WPF_MarkupCompile.cache
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net7.0-windows8.0\FileSystemParser.WPF_MarkupCompile.lref

@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemParser.Console", "FileSystemParser.Console\FileSystemParser.Console.csproj", "{8828F3DF-2568-4790-855E-858D6DBEE2EB}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystemParser.Console", "FileSystemParser.Console\FileSystemParser.Console.csproj", "{8828F3DF-2568-4790-855E-858D6DBEE2EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemParser.WPF", "FileSystemParser.WPF\FileSystemParser.WPF.csproj", "{6EBE5307-BA30-459C-8E4B-E66EAA02ADD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,15 @@ Global
 		{8828F3DF-2568-4790-855E-858D6DBEE2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8828F3DF-2568-4790-855E-858D6DBEE2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8828F3DF-2568-4790-855E-858D6DBEE2EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBE5307-BA30-459C-8E4B-E66EAA02ADD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBE5307-BA30-459C-8E4B-E66EAA02ADD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBE5307-BA30-459C-8E4B-E66EAA02ADD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBE5307-BA30-459C-8E4B-E66EAA02ADD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77D3E705-B738-4917-B788-8E1F43C4F13A}
 	EndGlobalSection
 EndGlobal

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lDMmXRNDaYvfL7IvpUS6s9c5pgw9uWkcoHWiTZC4+ymrDYY+eZZb0q2qL/18E3Sme59lQBS9JReJQ/EF5k3htw==",
+  "dgSpecHash": "hWdZ5/Vxzhg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Andrija\\Temp\\FileSystemParser\\FileSystemParser.Console\\FileSystemParser.Console.csproj",
+  "projectFilePath": "C:\\Users\\Andrija\\qfilesystemparser\\FileSystemParser\\FileSystemParser.Console\\FileSystemParser.Console.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
