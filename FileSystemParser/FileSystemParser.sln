@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystemParser.Console", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemParser.WPF", "FileSystemParser.WPF\FileSystemParser.WPF.csproj", "{6EBE5307-BA30-459C-8E4B-E66EAA02ADD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemParser.IPC", "FileSystemParser.IPC\FileSystemParser.IPC.csproj", "{DBBDFF99-366B-4C3F-88FA-A3D4B7BFA840}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6EBE5307-BA30-459C-8E4B-E66EAA02ADD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EBE5307-BA30-459C-8E4B-E66EAA02ADD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EBE5307-BA30-459C-8E4B-E66EAA02ADD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBBDFF99-366B-4C3F-88FA-A3D4B7BFA840}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBBDFF99-366B-4C3F-88FA-A3D4B7BFA840}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBBDFF99-366B-4C3F-88FA-A3D4B7BFA840}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBBDFF99-366B-4C3F-88FA-A3D4B7BFA840}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

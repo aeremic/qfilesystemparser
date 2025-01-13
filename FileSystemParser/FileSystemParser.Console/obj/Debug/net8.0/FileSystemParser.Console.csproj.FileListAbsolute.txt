@@ -27,3 +27,7 @@ C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Console\obj
 C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.pdb
 C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.genruntimeconfig.cache
 C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\ref\FileSystemParser.Console.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Console\bin\Debug\net8.0\FileSystemParser.IPC.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Console\bin\Debug\net8.0\FileSystemParser.IPC.pdb
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSystemParser.Console.csproj.AssemblyReference.cache
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Console\obj\Debug\net8.0\FileSyst.02E63BA2.Up2Date

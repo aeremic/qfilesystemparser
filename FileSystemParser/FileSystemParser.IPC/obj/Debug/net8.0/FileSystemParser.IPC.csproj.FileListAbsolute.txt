@@ -1,0 +1,12 @@
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\bin\Debug\net8.0\FileSystemParser.IPC.deps.json
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\bin\Debug\net8.0\FileSystemParser.IPC.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\bin\Debug\net8.0\FileSystemParser.IPC.pdb
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\obj\Debug\net8.0\FileSystemParser.IPC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\obj\Debug\net8.0\FileSystemParser.IPC.AssemblyInfoInputs.cache
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\obj\Debug\net8.0\FileSystemParser.IPC.AssemblyInfo.cs
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\obj\Debug\net8.0\FileSystemParser.IPC.csproj.CoreCompileInputs.cache
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\obj\Debug\net8.0\FileSystemParser.IPC.sourcelink.json
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\obj\Debug\net8.0\FileSystemParser.IPC.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\obj\Debug\net8.0\refint\FileSystemParser.IPC.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\obj\Debug\net8.0\FileSystemParser.IPC.pdb
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.IPC\obj\Debug\net8.0\ref\FileSystemParser.IPC.dll

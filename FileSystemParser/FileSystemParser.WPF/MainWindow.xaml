@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileSystemParser.WPF"
         mc:Ignorable="d"
-        Title="File system parser" Height="160" Width="800">
+        Title="File system parser" Height="340" Width="800">
     <Grid>
-        <TextBox x:Name="SelectPathTextBox" HorizontalAlignment="Left" Margin="207,11,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" />
-        <Button Content="..." HorizontalAlignment="Left" Margin="480,10,0,0" VerticalAlignment="Top" Click="BrowseButton_Click" Width="25"/>
+        <TextBox x:Name="SelectPathTextBox" HorizontalAlignment="Left" Margin="207,11,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="433" />
+        <Button Content="..." HorizontalAlignment="Left" Margin="645,10,0,0" VerticalAlignment="Top" Click="BrowseButton_Click" Width="25"/>
         <TextBox x:Name="CheckIntervalTextBox" HorizontalAlignment="Left" Margin="207,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="173" TextChanged="CheckIntervalTextBox_TextChanged"/>
         <TextBox x:Name="MaximumConcurrentProcessingTextBox" HorizontalAlignment="Left" Margin="207,57,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="70" TextChanged="MaximumConcurrentProcessingTextBox_TextChanged"/>
         <Label Content="Select path:" HorizontalAlignment="Left" Margin="5,7,0,0" VerticalAlignment="Top"/>
         <Label Content="Check interval (in ms):" HorizontalAlignment="Left" Margin="5,30,0,0" VerticalAlignment="Top" PreviewTextInput="NumberValidationTextBox"/>
         <Label Content="Maximum concurrent processing:" HorizontalAlignment="Left" Margin="5,52,0,0" VerticalAlignment="Top" PreviewTextInput="NumberValidationTextBox"/>
         <Button Content="Start" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="45" Click="StartButton_Click"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="770" Height="191"/>
 
     </Grid>
 </Window>

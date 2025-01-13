@@ -7,14 +7,30 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {
       "FileSystemParser.Console/1.0.0": {
+        "dependencies": {
+          "FileSystemParser.IPC": "1.0.0"
+        },
         "runtime": {
           "FileSystemParser.Console.dll": {}
+        }
+      },
+      "FileSystemParser.IPC/1.0.0": {
+        "runtime": {
+          "FileSystemParser.IPC.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
   },
   "libraries": {
     "FileSystemParser.Console/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "FileSystemParser.IPC/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

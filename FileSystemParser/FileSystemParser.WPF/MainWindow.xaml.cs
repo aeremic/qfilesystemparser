@@ -3,7 +3,9 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static System.Net.Mime.MediaTypeNames;
+using FileSystemParser.IPC;
+using System.Text.Json;
+using System;
 
 namespace FileSystemParser.WPF
 {
@@ -19,6 +21,8 @@ namespace FileSystemParser.WPF
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			IpcProvider.Initialize();
 		}
 
 		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -52,7 +56,20 @@ namespace FileSystemParser.WPF
 
 		private void StartButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			try
+			{
+				IpcProvider.WriteMessage(JsonSerializer.Serialize(
+					new IpcMessage
+					{
+						Path = _path,
+						CheckInterval = int.Parse(_checkInterval),
+						MaximumConcurrentProcessing = int.Parse(_maximumConcurrentProcessing)
+					}));
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
 		}
 	}
 }
