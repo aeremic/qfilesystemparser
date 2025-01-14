@@ -9,67 +9,83 @@ using System;
 
 namespace FileSystemParser.WPF
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
-	{
-		private string _path = string.Empty;
-		private string _checkInterval = string.Empty;
-		private string _maximumConcurrentProcessing = string.Empty;
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private string _path = @"C:\Users\Andrija\qfilesystemparser\FileSystemParser\Files";
+        private string _checkInterval = "1000";
+        private string _maximumConcurrentProcessing = "1";
 
-		public MainWindow()
-		{
-			InitializeComponent();
+        public MainWindow()
+        {
+            InitializeComponent();
 
-			IpcProvider.Initialize();
-		}
+            SelectPathTextBox.Text = _path;
+            CheckIntervalTextBox.Text = _checkInterval;
+            MaximumConcurrentProcessingTextBox.Text = _maximumConcurrentProcessing;
 
-		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-		{
-			var textBox = sender as TextBox;
-			e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
-		}
+            IpcProvider.InitializeServer();
+            
+            IpcProvider.TriggerReceivedMessage += IpcProviderTriggerReceivedMessage;
+        }
 
-		private void BrowseButton_Click(object sender, RoutedEventArgs e)
-		{
-			var folderDialog = new OpenFolderDialog();
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+        }
 
-			if (folderDialog.ShowDialog() != true)
-			{
-				return;
-			}
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+            var folderDialog = new OpenFolderDialog();
 
-			SelectPathTextBox.Text = folderDialog.FolderName;
-			_path = folderDialog.FolderName;
-		}
+            if (folderDialog.ShowDialog() != true)
+            {
+                return;
+            }
 
-		private void CheckIntervalTextBox_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			_checkInterval = CheckIntervalTextBox.Text;
-		}
+            SelectPathTextBox.Text = folderDialog.FolderName;
+            _path = folderDialog.FolderName;
+        }
 
-		private void MaximumConcurrentProcessingTextBox_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			_maximumConcurrentProcessing = MaximumConcurrentProcessingTextBox.Text;
-		}
+        private void CheckIntervalTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _checkInterval = CheckIntervalTextBox.Text;
+        }
 
-		private void StartButton_Click(object sender, RoutedEventArgs e)
-		{
-			try
-			{
-				IpcProvider.WriteMessage(JsonSerializer.Serialize(
-					new IpcMessage
-					{
-						Path = _path,
-						CheckInterval = int.Parse(_checkInterval),
-						MaximumConcurrentProcessing = int.Parse(_maximumConcurrentProcessing)
-					}));
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-			}
-		}
-	}
+        private void MaximumConcurrentProcessingTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _maximumConcurrentProcessing = MaximumConcurrentProcessingTextBox.Text;
+        }
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                IpcProvider.WriteMessageToClient(JsonSerializer.Serialize(
+                    new IpcConfigurationMessage
+                    {
+                        Path = _path,
+                        CheckInterval = int.Parse(_checkInterval),
+                        MaximumConcurrentProcessing = int.Parse(_maximumConcurrentProcessing)
+                    }));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void IpcProviderTriggerReceivedMessage(object? sender, IpcResultMessage? message)
+        {
+            if (message != null)
+            {
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    ResultTextBox.Text += $"Message Received from : {message.Result}";
+                }));
+            }
+        }
+    }
 }

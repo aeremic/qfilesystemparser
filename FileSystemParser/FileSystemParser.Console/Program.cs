@@ -1,117 +1,116 @@
 ﻿using System.IO.Pipes;
 using System.Text.Json;
-using FileSystemParser.Console;
 using FileSystemParser.IPC;
 
-internal class Program
+namespace FileSystemParser.Console;
+
+internal static class Program
 {
-	private static async Task Main(string[] args)
-	{
-		// Testing files path: @"C:\Users\Andrija\qfilesystemparser\FileSystemParser\Files";
+    private static async Task Main()
+    {
+        try
+        {
+            await using var namedPipeClientStream = new NamedPipeClientStream(
+                ".",
+                "FileSystemParserPipe",
+                PipeDirection.InOut,
+                PipeOptions.Asynchronous);
 
-		var foldersPath = string.Empty; 
-		var maxDegreeOfParallelism = 0;
-		var retryTimeInMs = 0;
+            System.Console.WriteLine($"Connecting...");
+            await namedPipeClientStream.ConnectAsync();
 
-		try
-		{
-			using var client = new NamedPipeClientStream(".", "FileSystemParserPipe", PipeDirection.InOut);
+            string serverInputData;
+            using (var reader = new StreamReader(namedPipeClientStream, leaveOpen: true))
+            {
+                serverInputData = await reader.ReadLineAsync() ?? string.Empty;
+            }
 
-			Console.WriteLine($"Connecting...");
-			client.Connect();
+            var ipcMessage = JsonSerializer.Deserialize<IpcConfigurationMessage>(serverInputData);
 
-			string serverInputData;
-			using (var reader = new StreamReader(client))
-			{
-				serverInputData = reader.ReadLine() ?? string.Empty;
-			}
+            if (ipcMessage == null)
+            {
+                return;
+            }
 
-			var ipcMessage = JsonSerializer.Deserialize<IpcMessage>(serverInputData);
+            var foldersPath = ipcMessage.Path;
+            System.Console.WriteLine($"Received folders path from the server: {foldersPath}");
 
-			if (ipcMessage == null)
-			{
-				return;
-			}
+            var retryTimeInMs = ipcMessage.CheckInterval;
+            System.Console.WriteLine($"Received retry time in ms from the server: {retryTimeInMs}");
 
-			foldersPath = ipcMessage.Path;
-			Console.WriteLine($"Received folders path from the server: {foldersPath}");
+            var maxDegreeOfParallelism = ipcMessage.MaximumConcurrentProcessing;
+            System.Console.WriteLine(
+                $"Received maximum degree of parallelism from the server: {maxDegreeOfParallelism}");
 
-			retryTimeInMs = ipcMessage.CheckInterval;
-			Console.WriteLine($"Received retry time in ms from the server: {retryTimeInMs}");
+            if (maxDegreeOfParallelism == 0)
+            {
+                maxDegreeOfParallelism = 1;
+            }
 
-			maxDegreeOfParallelism = ipcMessage.MaximumConcurrentProcessing;
-			Console.WriteLine($"Received maximum degree of parallelism from the server: {maxDegreeOfParallelism}");
-		}
-		catch (Exception ex)
-		{
-			Console.WriteLine($"Error while reading IPC message. Error: {ex.Message}");
-		}
+            if (!string.IsNullOrEmpty(foldersPath))
+            {
+                System.Console.WriteLine("Processing started...");
+                while (true)
+                {
+                    System.Console.WriteLine("Processing...");
 
-		if (maxDegreeOfParallelism == 0)
-		{
-			maxDegreeOfParallelism = 1;
-		}
+                    var filePaths = (from path in
+                            Directory.EnumerateFiles(foldersPath, "*.json", SearchOption.AllDirectories)
+                        select new
+                        {
+                            path,
+                        }).ToList();
 
-		if (!string.IsNullOrEmpty(foldersPath))
-		{
-			Console.WriteLine("Processing started...");
+                    await Parallel.ForEachAsync(filePaths,
+                        new ParallelOptions
+                        {
+                            MaxDegreeOfParallelism = maxDegreeOfParallelism
+                        },
+                        async (filePath, cancellationToken) =>
+                        {
+                            System.Console.WriteLine($"Processing file: {filePath.path}");
 
-			try
-			{
-				while (true)
-				{
-					Console.WriteLine("Processing...");
+                            var numberOfComponents = 0;
+                            try
+                            {
+                                await using var stream = File.OpenRead(filePath.path);
+                                var quest = await JsonSerializer.DeserializeAsync<Quest>(stream,
+                                    cancellationToken: cancellationToken);
 
-					var filePaths = (from path in
-							Directory.EnumerateFiles(foldersPath, "*.json", SearchOption.AllDirectories)
-									 select new
-									 {
-										 path,
-									 }).ToList();
+                                if (quest != null)
+                                {
+                                    numberOfComponents = quest.Components.Count;
+                                }
 
-					await Parallel.ForEachAsync(filePaths,
-						new ParallelOptions
-						{
-							MaxDegreeOfParallelism = maxDegreeOfParallelism
-						},
-						async (filePath, cancellationToken) =>
-						{
-							Console.WriteLine($"Processing file: {filePath.path}");
+                                await using (var writer = new StreamWriter(namedPipeClientStream))
+                                {
+                                    writer.AutoFlush = true;
+                                    await writer.WriteLineAsync($"File at path {filePath.path} successfully processed" +
+                                                                $" with {numberOfComponents} components.");
+                                }
 
-							var numberOfComponents = 0;
-							try
-							{
-								await using var stream = File.OpenRead(filePath.path);
-								var quest = await JsonSerializer.DeserializeAsync<Quest>(stream,
-									cancellationToken: cancellationToken);
+                                System.Console.WriteLine($"File at path {filePath.path} successfully processed" +
+                                                         $" with {numberOfComponents} components.");
+                            }
+                            catch (JsonException ex)
+                            {
+                                System.Console.WriteLine($"Error while parsing Json file at path {filePath.path}" +
+                                                         $"Error: {ex.Message}");
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Console.WriteLine($"Error while processing file at path {filePath.path}" +
+                                                         $"Error: {ex.Message}");
+                            }
+                        });
 
-								if (quest != null)
-								{
-									numberOfComponents = quest.Components.Count;
-								}
-
-								Console.WriteLine($"File at path {filePath.path} successfully processed" +
-												  $" with {numberOfComponents} components.");
-							}
-							catch (JsonException ex)
-							{
-								Console.WriteLine($"Error while parsing Json file at path {filePath.path}" +
-												  $"Error: {ex.Message}");
-							}
-							catch (Exception ex)
-							{
-								Console.WriteLine($"Error while processing file at path {filePath.path}" +
-												  $"Error: {ex.Message}");
-							}
-						});
-
-					Thread.Sleep(retryTimeInMs);
-				}
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine($"Error while reading files. Error: {ex.Message}");
-			}
-		}
-	}
+                    Thread.Sleep(retryTimeInMs);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Console.WriteLine($"Error while reading IPC message. Error: {ex.Message}");
+        }
+    }
 }

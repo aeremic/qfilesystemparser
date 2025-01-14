@@ -15,7 +15,7 @@
         <Label Content="Check interval (in ms):" HorizontalAlignment="Left" Margin="5,30,0,0" VerticalAlignment="Top" PreviewTextInput="NumberValidationTextBox"/>
         <Label Content="Maximum concurrent processing:" HorizontalAlignment="Left" Margin="5,52,0,0" VerticalAlignment="Top" PreviewTextInput="NumberValidationTextBox"/>
         <Button Content="Start" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="45" Click="StartButton_Click"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="770" Height="191"/>
+        <TextBox x:Name="ResultTextBox" HorizontalAlignment="Center" Margin="0,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="770" Height="191"/>
 
     </Grid>
 </Window>
