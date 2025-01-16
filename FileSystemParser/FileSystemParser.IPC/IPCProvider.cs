@@ -38,9 +38,17 @@ namespace FileSystemParser.IPC
 
         public static async Task WriteMessageToClient(string message)
         {
+            // var byteArray = Encoding.UTF8.GetBytes(message);
+            // _namedPipeServerStream
+            //     .BeginWrite(byteArray, 0, byteArray.Length, ar => { }, _namedPipeServerStream);
+            //
+            // return Task.CompletedTask;
+
             await using var sw = new StreamWriter(_namedPipeServerStream!);
             sw.AutoFlush = true;
             await sw.WriteAsync(message);
+
+            int temp;
 //             await sw.FlushAsync();
 //
 // #pragma warning disable CA1416
@@ -51,17 +59,20 @@ namespace FileSystemParser.IPC
         private static void ServerCallbackWaitingHandler(IAsyncResult ar)
         {
             _namedPipeServerStream!.EndWaitForConnection(ar);
-            
-            using var reader = new StreamReader(_namedPipeServerStream);
-            var message = reader.ReadLine();
-            
-            if (string.IsNullOrEmpty(message))
-            {
-                return;
-            }
 
             try
             {
+                string message;
+                using (var reader = new StreamReader(_namedPipeServerStream, leaveOpen: true))
+                {
+                    message = reader.ReadLine() ?? string.Empty;
+                }
+
+                if (string.IsNullOrEmpty(message))
+                {
+                    return;
+                }
+
                 TriggerReceivedMessage?.Invoke(null,
                     JsonSerializer.Deserialize<IpcResultMessage>(message));
             }

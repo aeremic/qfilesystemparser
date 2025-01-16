@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FileSystemParser.IPC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f49b4a0f2f3de6f6e270e64c4ef740148cee4d2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64301630fbbad4e35cc896468a0d233df8f5cb74")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileSystemParser.IPC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileSystemParser.IPC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

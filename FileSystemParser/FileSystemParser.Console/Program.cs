@@ -1,4 +1,5 @@
 ﻿using System.IO.Pipes;
+using System.Text;
 using System.Text.Json;
 using FileSystemParser.IPC;
 
@@ -15,10 +16,27 @@ internal static class Program
                 "FileSystemParserPipe",
                 PipeDirection.InOut,
                 PipeOptions.Asynchronous);
-
+        
             System.Console.WriteLine($"Connecting...");
             await namedPipeClientStream.ConnectAsync();
+            
+            await using var sw = new StreamWriter(namedPipeClientStream);
+            sw.AutoFlush = true;
+            await sw.WriteAsync($"File at path successfully processed" +
+                                $" with components.");
 
+            // var byteArray = new byte[10000];
+            // _ = namedPipeClientStream.BeginRead(
+            //     byteArray,
+            //     0,
+            //     byteArray.Length,
+            //     _ => { },
+            //     namedPipeClientStream);
+
+            // var byteArray = new byte[10000];
+            // var read = namedPipeClientStream.Read(byteArray, 0, byteArray.Length);
+            // var serverInputData = Encoding.UTF8.GetString(byteArray);
+            
             string serverInputData;
             using (var reader = new StreamReader(namedPipeClientStream, leaveOpen: true))
             {
@@ -81,13 +99,11 @@ internal static class Program
                                 {
                                     numberOfComponents = quest.Components.Count;
                                 }
-
-                                await using (var writer = new StreamWriter(namedPipeClientStream))
-                                {
-                                    writer.AutoFlush = true;
-                                    await writer.WriteLineAsync($"File at path {filePath.path} successfully processed" +
-                                                                $" with {numberOfComponents} components.");
-                                }
+                                
+                                await using var sw = new StreamWriter(namedPipeClientStream);
+                                sw.AutoFlush = true;
+                                await sw.WriteAsync($"File at path {filePath.path} successfully processed" +
+                                                    $" with {numberOfComponents} components.");
 
                                 System.Console.WriteLine($"File at path {filePath.path} successfully processed" +
                                                          $" with {numberOfComponents} components.");
