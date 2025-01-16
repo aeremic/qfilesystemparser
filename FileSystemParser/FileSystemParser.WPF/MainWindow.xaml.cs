@@ -12,7 +12,7 @@ namespace FileSystemParser.WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private string _path = @"C:\Users\Andrija\qfilesystemparser\FileSystemParser\Files";
         private string _checkInterval = "1000";
@@ -26,9 +26,9 @@ namespace FileSystemParser.WPF
             CheckIntervalTextBox.Text = _checkInterval;
             MaximumConcurrentProcessingTextBox.Text = _maximumConcurrentProcessing;
 
-            IpcProvider.InitializeServer();
+            WsProvider.InitializeServerAsync();
             
-            IpcProvider.TriggerReceivedMessage += IpcProviderTriggerReceivedMessage;
+            WsProvider.TriggerReceivedMessage += WsProviderTriggerReceivedMessage!;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -63,8 +63,8 @@ namespace FileSystemParser.WPF
         {
             try
             {
-                IpcProvider.WriteMessageToClient(JsonSerializer.Serialize(
-                    new IpcConfigurationMessage
+                WsProvider.WriteMessageToClientAsync(JsonSerializer.Serialize(
+                    new WsConfigurationMessage
                     {
                         Path = _path,
                         CheckInterval = int.Parse(_checkInterval),
@@ -77,15 +77,12 @@ namespace FileSystemParser.WPF
             }
         }
 
-        private void IpcProviderTriggerReceivedMessage(object? sender, IpcResultMessage? message)
+        private void WsProviderTriggerReceivedMessage(object sender, string message)
         {
-            if (message != null)
+            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    ResultTextBox.Text += $"Message Received from : {message.Result}";
-                }));
-            }
+                ResultTextBox.Text += $"{message}\n";
+            }));
         }
     }
 }

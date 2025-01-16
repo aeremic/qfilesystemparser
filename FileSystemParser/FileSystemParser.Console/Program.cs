@@ -1,4 +1,4 @@
-﻿using System.IO.Pipes;
+﻿using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
 using FileSystemParser.IPC;
@@ -11,39 +11,22 @@ internal static class Program
     {
         try
         {
-            await using var namedPipeClientStream = new NamedPipeClientStream(
-                ".",
-                "FileSystemParserPipe",
-                PipeDirection.InOut,
-                PipeOptions.Asynchronous);
-        
-            System.Console.WriteLine($"Connecting...");
-            await namedPipeClientStream.ConnectAsync();
+            System.Console.WriteLine("Connecting...");
+
+            using var ws = new ClientWebSocket();
+
+            var uri = new Uri("ws://localhost:9006");
+            await ws.ConnectAsync(uri, CancellationToken.None);
             
-            await using var sw = new StreamWriter(namedPipeClientStream);
-            sw.AutoFlush = true;
-            await sw.WriteAsync($"File at path successfully processed" +
-                                $" with components.");
-
-            // var byteArray = new byte[10000];
-            // _ = namedPipeClientStream.BeginRead(
-            //     byteArray,
-            //     0,
-            //     byteArray.Length,
-            //     _ => { },
-            //     namedPipeClientStream);
-
-            // var byteArray = new byte[10000];
-            // var read = namedPipeClientStream.Read(byteArray, 0, byteArray.Length);
-            // var serverInputData = Encoding.UTF8.GetString(byteArray);
+            System.Console.WriteLine("Connected");
             
-            string serverInputData;
-            using (var reader = new StreamReader(namedPipeClientStream, leaveOpen: true))
-            {
-                serverInputData = await reader.ReadLineAsync() ?? string.Empty;
-            }
-
-            var ipcMessage = JsonSerializer.Deserialize<IpcConfigurationMessage>(serverInputData);
+            var receiveBuffer = new byte[1024];
+            var receiveResult = await ws.ReceiveAsync(
+                new ArraySegment<byte>(receiveBuffer),
+                CancellationToken.None);
+            
+            var serverInputData = Encoding.UTF8.GetString(receiveBuffer, 0, receiveResult.Count);
+            var ipcMessage = JsonSerializer.Deserialize<WsConfigurationMessage>(serverInputData);
 
             if (ipcMessage == null)
             {
@@ -100,10 +83,13 @@ internal static class Program
                                     numberOfComponents = quest.Components.Count;
                                 }
                                 
-                                await using var sw = new StreamWriter(namedPipeClientStream);
-                                sw.AutoFlush = true;
-                                await sw.WriteAsync($"File at path {filePath.path} successfully processed" +
-                                                    $" with {numberOfComponents} components.");
+                                var buffer = Encoding.UTF8.GetBytes($"File at path {filePath.path}" +
+                                                                    $" successfully processed with {numberOfComponents}" +
+                                                                    $" components.");
+                                await ws.SendAsync(
+                                    new ArraySegment<byte>(buffer), 
+                                    WebSocketMessageType.Text, true, 
+                                    CancellationToken.None);
 
                                 System.Console.WriteLine($"File at path {filePath.path} successfully processed" +
                                                          $" with {numberOfComponents} components.");
