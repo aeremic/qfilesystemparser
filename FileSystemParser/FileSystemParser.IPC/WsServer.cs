@@ -30,10 +30,7 @@ namespace FileSystemParser.IPC
                 var webSocketContext = await context.AcceptWebSocketAsync(subProtocol: null); 
                 _webSocket = webSocketContext.WebSocket;
                 
-                new Thread(() =>
-                {
-                    ReceiveMessagesFromClientAsync();
-                }).Start();
+                new Thread(ReceiveMessagesFromClientWorker).Start();
             }
             else
             {
@@ -50,6 +47,11 @@ namespace FileSystemParser.IPC
                 await _webSocket.SendAsync(new ArraySegment<byte>(buffer), WebSocketMessageType.Text, true,
                     CancellationToken.None);
             }
+        }
+        
+        private static async void ReceiveMessagesFromClientWorker()
+        {
+            await ReceiveMessagesFromClientAsync();
         }
 
         private static async Task ReceiveMessagesFromClientAsync()
