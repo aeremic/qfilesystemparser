@@ -26,9 +26,9 @@ namespace FileSystemParser.WPF
             CheckIntervalTextBox.Text = _checkInterval;
             MaximumConcurrentProcessingTextBox.Text = _maximumConcurrentProcessing;
 
-            WsProvider.InitializeServerAsync();
+            WsServer.InitializeServerAsync();
             
-            WsProvider.TriggerReceivedMessage += WsProviderTriggerReceivedMessage!;
+            WsServer.TriggerReceivedMessage += WsServerTriggerReceivedMessage!;
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -63,7 +63,7 @@ namespace FileSystemParser.WPF
         {
             try
             {
-                WsProvider.WriteMessageToClientAsync(JsonSerializer.Serialize(
+                WsServer.WriteMessageToClientAsync(JsonSerializer.Serialize(
                     new WsConfigurationMessage
                     {
                         Path = _path,
@@ -77,7 +77,7 @@ namespace FileSystemParser.WPF
             }
         }
 
-        private void WsProviderTriggerReceivedMessage(object sender, string message)
+        private void WsServerTriggerReceivedMessage(object sender, string message)
         {
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {

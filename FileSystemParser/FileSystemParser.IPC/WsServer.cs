@@ -11,7 +11,7 @@ namespace FileSystemParser.IPC
         public int MaximumConcurrentProcessing { get; init; }
     }
 
-    public static class WsProvider
+    public static class WsServer
     {
         private static WebSocket? _webSocket;        
         
@@ -30,7 +30,7 @@ namespace FileSystemParser.IPC
                 var webSocketContext = await context.AcceptWebSocketAsync(subProtocol: null); 
                 
                 _webSocket = webSocketContext.WebSocket;
-                ReceiveMessagesAsync();
+                ReceiveMessagesFromClientAsync();
             }
             else
             {
@@ -49,7 +49,7 @@ namespace FileSystemParser.IPC
             }
         }
 
-        private static async Task ReceiveMessagesAsync()
+        private static async Task ReceiveMessagesFromClientAsync()
         {
             var receiveBuffer = new byte[1024];
             while (true)
