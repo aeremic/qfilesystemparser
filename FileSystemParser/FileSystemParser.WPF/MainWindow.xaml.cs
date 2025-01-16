@@ -25,9 +25,11 @@ namespace FileSystemParser.WPF
             SelectPathTextBox.Text = _path;
             CheckIntervalTextBox.Text = _checkInterval;
             MaximumConcurrentProcessingTextBox.Text = _maximumConcurrentProcessing;
-
-            WsServer.InitializeServerAsync();
-            
+        }
+        
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            await WsServer.InitializeServerAsync();
             WsServer.TriggerReceivedMessage += WsServerTriggerReceivedMessage!;
         }
 
@@ -59,11 +61,11 @@ namespace FileSystemParser.WPF
             _maximumConcurrentProcessing = MaximumConcurrentProcessingTextBox.Text;
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                WsServer.WriteMessageToClientAsync(JsonSerializer.Serialize(
+                await WsServer.WriteMessageToClientAsync(JsonSerializer.Serialize(
                     new WsConfigurationMessage
                     {
                         Path = _path,

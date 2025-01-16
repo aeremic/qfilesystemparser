@@ -28,9 +28,12 @@ namespace FileSystemParser.IPC
             if (context.Request.IsWebSocketRequest)
             {
                 var webSocketContext = await context.AcceptWebSocketAsync(subProtocol: null); 
-                
                 _webSocket = webSocketContext.WebSocket;
-                ReceiveMessagesFromClientAsync();
+                
+                new Thread(() =>
+                {
+                    ReceiveMessagesFromClientAsync();
+                }).Start();
             }
             else
             {
@@ -52,26 +55,14 @@ namespace FileSystemParser.IPC
         private static async Task ReceiveMessagesFromClientAsync()
         {
             var receiveBuffer = new byte[1024];
-            while (true)
+            while (_webSocket?.State == WebSocketState.Open)
             {
-                if (_webSocket?.State == WebSocketState.Open)
-                {
-                    var receiveResult = await _webSocket.ReceiveAsync(
-                        new ArraySegment<byte>(receiveBuffer),
-                        CancellationToken.None);
-                    var receivedMessage = Encoding.UTF8.GetString(receiveBuffer, 0, receiveResult.Count);
-                    
-                    TriggerReceivedMessage?.Invoke(null, receivedMessage);
-                }
-                else
-                {
-                    break;
-                }
-            }          
-        }
+                var receiveResult =
+                    await _webSocket.ReceiveAsync(new ArraySegment<byte>(receiveBuffer), CancellationToken.None);
+                var receivedMessage = Encoding.UTF8.GetString(receiveBuffer, 0, receiveResult.Count);
 
-        private static void ServerCallbackWaitingHandler(IAsyncResult ar)
-        {
+                TriggerReceivedMessage?.Invoke(null, receivedMessage);
+            }
         }
     }
 }
