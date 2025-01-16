@@ -1,0 +1,12 @@
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\bin\Debug\net8.0\FileSystemParser.Communication.deps.json
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\bin\Debug\net8.0\FileSystemParser.Communication.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\bin\Debug\net8.0\FileSystemParser.Communication.pdb
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\obj\Debug\net8.0\FileSystemParser.Communication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\obj\Debug\net8.0\FileSystemParser.Communication.AssemblyInfoInputs.cache
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\obj\Debug\net8.0\FileSystemParser.Communication.AssemblyInfo.cs
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\obj\Debug\net8.0\FileSystemParser.Communication.csproj.CoreCompileInputs.cache
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\obj\Debug\net8.0\FileSystemParser.Communication.sourcelink.json
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\obj\Debug\net8.0\FileSystemParser.Communication.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\obj\Debug\net8.0\refint\FileSystemParser.Communication.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\obj\Debug\net8.0\FileSystemParser.Communication.pdb
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.Communication\obj\Debug\net8.0\ref\FileSystemParser.Communication.dll

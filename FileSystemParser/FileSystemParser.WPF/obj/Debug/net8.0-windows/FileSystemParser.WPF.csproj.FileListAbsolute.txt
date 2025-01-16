@@ -19,7 +19,9 @@ C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Deb
 C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net8.0-windows\FileSystemParser.WPF.pdb
 C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net8.0-windows\FileSystemParser.WPF.genruntimeconfig.cache
 C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net8.0-windows\ref\FileSystemParser.WPF.dll
-C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\bin\Debug\net8.0-windows\FileSystemParser.IPC.dll
-C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\bin\Debug\net8.0-windows\FileSystemParser.IPC.pdb
 C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net8.0-windows\FileSystemParser.WPF.csproj.AssemblyReference.cache
 C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\obj\Debug\net8.0-windows\FileSyst.7B747976.Up2Date
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\bin\Debug\net8.0-windows\FileSystemParser.Common.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\bin\Debug\net8.0-windows\FileSystemParser.Communication.dll
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\bin\Debug\net8.0-windows\FileSystemParser.Common.pdb
+C:\Users\Andrija\qfilesystemparser\FileSystemParser\FileSystemParser.WPF\bin\Debug\net8.0-windows\FileSystemParser.Communication.pdb

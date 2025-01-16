@@ -1,12 +1,13 @@
 ﻿using System.Net.WebSockets;
 using System.Text;
 using System.Text.Json;
-using FileSystemParser.IPC;
+using FileSystemParser.Common;
 
 namespace FileSystemParser.Console;
 
 internal static class Program
 {
+    // TODO: Stop mechanism.
     private static async Task Main()
     {
         try
@@ -26,7 +27,7 @@ internal static class Program
                 CancellationToken.None);
             
             var serverInputData = Encoding.UTF8.GetString(receiveBuffer, 0, receiveResult.Count);
-            var ipcMessage = JsonSerializer.Deserialize<WsConfigurationMessage>(serverInputData);
+            var ipcMessage = JsonSerializer.Deserialize<ConfigurationMessage>(serverInputData);
 
             if (ipcMessage == null)
             {

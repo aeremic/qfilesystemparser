@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "FileSystemParser.Common/1.0.0": {
+        "runtime": {
+          "FileSystemParser.Common.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FileSystemParser.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

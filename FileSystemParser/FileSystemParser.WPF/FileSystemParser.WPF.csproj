@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FileSystemParser.IPC\FileSystemParser.IPC.csproj" />
+    <ProjectReference Include="..\FileSystemParser.Common\FileSystemParser.Common.csproj" />
+    <ProjectReference Include="..\FileSystemParser.Communication\FileSystemParser.Communication.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,9 +3,10 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using FileSystemParser.IPC;
+using FileSystemParser.Communication;
 using System.Text.Json;
 using System;
+using FileSystemParser.Common;
 
 namespace FileSystemParser.WPF
 {
@@ -35,6 +36,7 @@ namespace FileSystemParser.WPF
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
+            // TODO: Fix.
             e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
         }
 
@@ -66,7 +68,7 @@ namespace FileSystemParser.WPF
             try
             {
                 await WsServer.WriteMessageToClientAsync(JsonSerializer.Serialize(
-                    new WsConfigurationMessage
+                    new ConfigurationMessage
                     {
                         Path = _path,
                         CheckInterval = int.Parse(_checkInterval),

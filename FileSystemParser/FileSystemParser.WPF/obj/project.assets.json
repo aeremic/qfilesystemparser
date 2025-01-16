@@ -2,28 +2,44 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
-      "FileSystemParser.IPC/1.0.0": {
+      "FileSystemParser.Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "compile": {
-          "bin/placeholder/FileSystemParser.IPC.dll": {}
+          "bin/placeholder/FileSystemParser.Common.dll": {}
         },
         "runtime": {
-          "bin/placeholder/FileSystemParser.IPC.dll": {}
+          "bin/placeholder/FileSystemParser.Common.dll": {}
+        }
+      },
+      "FileSystemParser.Communication/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/FileSystemParser.Communication.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/FileSystemParser.Communication.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "FileSystemParser.IPC/1.0.0": {
+    "FileSystemParser.Common/1.0.0": {
       "type": "project",
-      "path": "../FileSystemParser.IPC/FileSystemParser.IPC.csproj",
-      "msbuildProject": "../FileSystemParser.IPC/FileSystemParser.IPC.csproj"
+      "path": "../FileSystemParser.Common/FileSystemParser.Common.csproj",
+      "msbuildProject": "../FileSystemParser.Common/FileSystemParser.Common.csproj"
+    },
+    "FileSystemParser.Communication/1.0.0": {
+      "type": "project",
+      "path": "../FileSystemParser.Communication/FileSystemParser.Communication.csproj",
+      "msbuildProject": "../FileSystemParser.Communication/FileSystemParser.Communication.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "FileSystemParser.IPC >= 1.0.0"
+      "FileSystemParser.Common >= 1.0.0",
+      "FileSystemParser.Communication >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -58,8 +74,11 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\Andrija\\qfilesystemparser\\FileSystemParser\\FileSystemParser.IPC\\FileSystemParser.IPC.csproj": {
-              "projectPath": "C:\\Users\\Andrija\\qfilesystemparser\\FileSystemParser\\FileSystemParser.IPC\\FileSystemParser.IPC.csproj"
+            "C:\\Users\\Andrija\\qfilesystemparser\\FileSystemParser\\FileSystemParser.Common\\FileSystemParser.Common.csproj": {
+              "projectPath": "C:\\Users\\Andrija\\qfilesystemparser\\FileSystemParser\\FileSystemParser.Common\\FileSystemParser.Common.csproj"
+            },
+            "C:\\Users\\Andrija\\qfilesystemparser\\FileSystemParser\\FileSystemParser.Communication\\FileSystemParser.Communication.csproj": {
+              "projectPath": "C:\\Users\\Andrija\\qfilesystemparser\\FileSystemParser\\FileSystemParser.Communication\\FileSystemParser.Communication.csproj"
             }
           }
         }
